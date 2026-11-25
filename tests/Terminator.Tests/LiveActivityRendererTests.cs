@@ -357,6 +357,8 @@ public class LiveActivityRendererTests
             Ansi = ansi ? AnsiSupport.Yes : AnsiSupport.No,
             Interactive = interactive ? InteractionSupport.Yes : InteractionSupport.No,
             Out = new AnsiConsoleOutput(output ?? new StringWriter()),
+            // The CI enrichers (GitHub Actions among them) would override Interactive.
+            Enrichment = new ProfileEnrichment { UseDefaultEnrichers = false },
         });
         console.Profile.Width = Width;
         console.Profile.Height = Height;
